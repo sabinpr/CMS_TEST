@@ -52,9 +52,11 @@ INSTALLED_APPS = [
     "drf_spectacular",
     "rest_framework_simplejwt.token_blacklist",
     "django_filters",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -202,3 +204,7 @@ FRONTEND_URL = config("FRONTEND_URL", default="http://localhost:3000")
 # WhiteNoise for static files
 MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Next.js dev server
+]
